@@ -16,6 +16,7 @@ import { NyukoPage } from '../pages/private/nyuko/nyuko';
 import { SyukoPage } from '../pages/private/syuko/syuko';
 import { SearchPage } from '../pages/private/search/search';
 import { SearchDetailPage } from '../pages/private/search_detail/search_detail'; //20181016 ANHLD ADD
+import { MessagePage } from '../pages/private/message/message';
 
 @NgModule({
   declarations: [ //ページを追加したら、ここにも追加することを忘れない
@@ -28,7 +29,8 @@ import { SearchDetailPage } from '../pages/private/search_detail/search_detail';
     AboutPage,
     NyukoPage,
     SyukoPage,
-    SearchDetailPage
+    SearchDetailPage,
+    MessagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -44,7 +46,8 @@ import { SearchDetailPage } from '../pages/private/search_detail/search_detail';
     AboutPage,
     NyukoPage,
     SyukoPage,
-    SearchDetailPage
+    SearchDetailPage,
+    MessagePage
   ],
   providers: [
       BarcodeScanner,

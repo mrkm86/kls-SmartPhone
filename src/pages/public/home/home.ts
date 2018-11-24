@@ -12,6 +12,7 @@ import { IsIniOperation } from '../../../inc/IsIniOperation';
 //個別ページ ------------------------------------------------------------------------
 import { NyukoPage } from '../../private/nyuko/nyuko';
 import { SyukoPage } from '../../private/syuko/syuko';
+import { MessagePage } from '../../private/message/message';
 
 @Component({
     selector: 'page-home',
@@ -90,10 +91,21 @@ export class HomePage {
                 break;
 
 
+            //メッセージ
+            case "MESSAGE":
+                /*
+                this.loginUser = await IsIniOperation.IsIniRead(Global.T_SETINI, 'LOGIN_USER');
+                this.loginPassword = await IsIniOperation.IsIniRead(Global.T_SETINI, 'PASSWORD');
 
+                //ログインをしているかどうか確認する
+                if (this.loginUser == "" || this.loginPassword == "") {
+                    await IsDispOperation.IsMessageBox(this.alertCtrl, "ログインされていません", "エラー", "OK", "");
+                    return;
+                }
+                */
 
-
-
+                this.navCtrl.push(MessagePage, { index: val });
+                break;
                 
             //ログオフ
             case "LOGOFF":

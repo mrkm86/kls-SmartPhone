@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>メッセージ</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        
+        <ion-item>
+            <ion-label>メッセージ選択</ion-label>
+            <ion-select [(ngModel)]="toppings" multiple="false">
+                <ion-option>順調</ion-option>
+                <ion-option>遅れ気味</ion-option>
+                <ion-option>今日は難しい</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <!--確定ボタン-->
+        <ion-item>
+            <button ion-button full large block
+                    class="button-SendMessage"
+                    (click)="cmdSendMessage_Click()">
+                    送信
+            </button>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
