@@ -7,8 +7,6 @@ import { IsIniOperation } from '../inc/IsIniOperation';    //20180918 ANHLD ADD
 
 import { HomePage } from '../pages/public/home/home';
 import { SettingPage } from '../pages/public/setting/setting';
-import { SearchPage } from '../pages/private/search/search';
-import { Global } from '../inc/Global';
 
 @Component({
     templateUrl: 'app.html'
@@ -36,8 +34,7 @@ export class MyApp {
             // used for an example of ngFor and navigation
             this.pages = [
                 { title: 'ホーム', component: HomePage, id: 1 },
-                { title: '検索画面', component: SearchPage, id: 2 },
-                { title: '設定', component: SettingPage, id: 3 }
+                { title: '設定', component: SettingPage, id: 2 }
             ];
         });
     }
