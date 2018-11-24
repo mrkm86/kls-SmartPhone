@@ -23,22 +23,29 @@ export class HomePage {
     MENUINFO =
         [
             {
-                menu: "NYUKO",
-                DispTitle: "入庫処理",
-                icon: "arrow-round-forward",
-                color: "NYUKOSEL"
+                menu: "SYUKA",
+                DispTitle: "集荷",
+                icon: "cart"
             },
             {
-                menu: "SYUKO",
-                DispTitle: "出庫処理",
-                icon: "arrow-round-back",
-                color: "SYUKOSEL"
+                menu: "SEND_BUGGAGE_STATUS",
+                DispTitle: "貨物状態",
+                icon: "camera"
             },
             {
-                menu: "TANAOROSI",
-                DispTitle: "棚卸処理",
-                icon: "md-clipboard",
-                color: "TANASEL"
+                menu: "MESSAGE",
+                DispTitle: "メッセージ",
+                icon: "mail"
+            },
+            {
+                menu: "HISTORY",
+                DispTitle: "送信履歴",
+                icon: "time"
+            },
+            {
+                menu: "LOGOFF",
+                DispTitle: "ログオフ",
+                icon: "power"
             }
         ]
 
@@ -82,13 +89,30 @@ export class HomePage {
                 this.navCtrl.push(SyukoPage, { index: val });
                 break;
 
-            case "TANAOROSI":
-                //20180912 ANHLD EDIT START
-                //var strAnswer = IsDispOperation.IsMessageBox(this.alertCtrl, "どうしますか！？", "エラー", "YESNO", "");
-                var strAnswer = await IsDispOperation.IsMessageBox(this.alertCtrl, "どうしますか！？", "エラー", "YESNO", "");
-                //20180912 ANHLD EDIT END
-                alert(strAnswer);
-                //this.navCtrl.push(NyukoPage, { index: val });
+
+
+
+
+
+                
+            //ログオフ
+            case "LOGOFF":
+                Global.g_Tanto = "";
+
+                await IsIniOperation.IsIniWrite(Global.T_SETINI, 'LOGIN_USER', '')
+                .then(() => {
+                    IsIniOperation.IsIniWrite(Global.T_SETINI, 'PASSWORD', '');
+                })
+                .then(() => {
+                    IsIniOperation.IsIniWrite(Global.T_SETINI, 'CARNO', '');
+                });
+
+                let alert = this.alertCtrl.create({
+                    title: 'お疲れ様でした。',
+                    subTitle: 'ログオフしました',
+                    buttons: ['OK']
+                });
+                alert.present();
                 break;
         }
     }

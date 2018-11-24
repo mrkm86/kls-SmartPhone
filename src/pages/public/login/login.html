@@ -8,57 +8,81 @@
 
 <ion-content>
     <ion-list>
-        <h2 class="center">ログイン情報</h2>
+        <h2 class="center">ログイン情報を入力</h2>
 
-        <!--20180912 ANHLD EDIT START-->
-        <!--<ion-item>
-            <ion-input name="txtLoginUser"
-                       type="text"
-                       placeholder="userid"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-input name="txtLoginPassword"
-                       type="password"
-                       placeholder="password"></ion-input>
-        </ion-item>-->
-
-        <!--User name-->
+        <!--ログインID-->
         <ion-grid>
             <ion-row>
                 <!--テキストボックス-->
                 <ion-item>
-                    <ion-input #txtLoginUser
-                               name="txtLoginUser"
-                               type="text"
-                               placeholder="userid"></ion-input>
+                    <ion-input #inputLoginUser
+                                name="inputLoginUser"
+                                type="number"
+                                maxlength="7"
+                                placeholder="ログインID"
+                                (focus)="txtLoginUser_GotFocus()">
+                    </ion-input>
                 </ion-item>
                 <!--スキャンボタン-->
                 <ion-item no-lines class="item-button-scan">
+                    <ion-label stacked></ion-label>
                     <button ion-button icon-only
                             item-content class="button-scan"
-                            (click)="onScan('txtLoginUser')">
+                            name="btnLoginUser"
+                            (click)="Scanner_OnScanned($event)">
+                        <ion-icon name="md-qr-scanner"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-row>
+
+        </ion-grid>
+
+        <!--パスワード-->
+        <ion-grid>
+            <ion-row>
+                <!--テキストボックス-->
+                <ion-item>
+                    <ion-input #inputLoginPassWord
+                                name="inputLoginPassWord"
+                                type="password"
+                                maxlength="32"
+                                placeholder="パスワード"
+                                (focus)="txtLoginPassWord_GotFocus()">
+                    </ion-input>
+                </ion-item>
+                <!--スキャンボタン-->
+                <ion-item no-lines class="item-button-scan">
+                    <ion-label stacked></ion-label>
+                    <button ion-button icon-only
+                            item-content class="button-scan"
+                            name="btnLoginPassWord"
+                            (click)="Scanner_OnScanned($event)">
                         <ion-icon name="md-qr-scanner"></ion-icon>
                     </button>
                 </ion-item>
             </ion-row>
         </ion-grid>
 
-        <!--Password-->
+        <!--号車-->
         <ion-grid>
             <ion-row>
                 <!--テキストボックス-->
                 <ion-item>
-                    <ion-input #txtLoginPassword
-                               name="txtLoginPassword"
-                               type="text"
-                               placeholder="password"></ion-input>
+                    <ion-input #inputCarNo
+                                name="inputCarNo"
+                                type="number"
+                                maxlength="5"
+                                placeholder="号車"
+                                (focus)="txtCarNo_GotFocus()">
+                    </ion-input>
                 </ion-item>
                 <!--スキャンボタン-->
                 <ion-item no-lines class="item-button-scan">
+                    <ion-label stacked></ion-label>
                     <button ion-button icon-only
                             item-content class="button-scan"
-                            (click)="onScan('txtLoginPassword')">
+                            name="btnCarNo"
+                            (click)="Scanner_OnScanned($event)">
                         <ion-icon name="md-qr-scanner"></ion-icon>
                     </button>
                 </ion-item>
@@ -70,9 +94,9 @@
             <button ion-button full large block
                     class="button-SignIn"
                     (click)="cmdSignIn_Click()">
-                    サインイン
+                    ログイン
             </button>
         </ion-item>
-        <!--20180912 ANHLD EDIT END-->
+
     </ion-list>
 </ion-content>
