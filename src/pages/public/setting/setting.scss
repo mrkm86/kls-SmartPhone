@@ -1,0 +1,26 @@
+page-setting {
+    /*20180904 ANHLD ADD START*/
+    .item-button-scan {
+        width: 5%;
+        min-width: 80px;
+    }
+    .button-scan{
+        padding: 20px 15px !important;
+    }
+    /*20180904 ANHLD ADD END*/
+    left: 10px;    
+}
+
+.page-setting-about {
+    position: absolute;
+    top: calc(100% - 10px);   
+    left:0px;
+}
+
+.center{
+    padding-left: 10px;
+}
+
+.page-setting-about p{
+    padding-left: 10px;
+}

@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            設定
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <div class="page-setting-content">
+            <div>
+                <h2 class="center">接続先情報</h2>
+                <ion-grid>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label stacked>API Service URL</ion-label>
+                            <ion-input #txtUrlInput name="txtUrlInput" type="text" placeholder="https://"></ion-input>
+                        </ion-item>
+                        <ion-item no-lines class="item-button-scan">
+                            <ion-label stacked></ion-label>
+                            <button ion-button icon-only item-content class="button-scan" name="btnInputUrl" (click)="Scanner_OnScanned($event)">
+                                <ion-icon name="md-qr-scanner"></ion-icon>
+                            </button>
+                        </ion-item>
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+            <div class="page-setting-login">
+                <h2 class="center">ログイン情報</h2>
+
+                <!--User name-->
+                <ion-grid>
+                    <ion-row>
+                        <!--テキストボックス-->
+                        <ion-item>
+                            <ion-label stacked></ion-label>
+                            <ion-input #txtLoginUserInput name="txtLoginUserInput" type="text" placeholder="userid"></ion-input>
+                        </ion-item>
+                        <!--スキャンボタン-->
+                        <ion-item no-lines class="item-button-scan">
+                            <ion-label stacked></ion-label>
+                            <button ion-button icon-only item-content class="button-scan" name="btnInputUser" (click)="Scanner_OnScanned($event)">
+                                <ion-icon name="md-qr-scanner"></ion-icon>
+                            </button>
+                        </ion-item>
+                    </ion-row>
+                </ion-grid>
+
+                <!--Password-->
+                <ion-grid>
+                    <ion-row>
+                        <!--テキストボックス-->
+                        <ion-item>
+                            <ion-label stacked></ion-label>
+                            <ion-input #txtLoginPasswordInput name="txtLoginPasswordInput" type="password" placeholder="password"></ion-input>
+                        </ion-item>
+                        <!--スキャンボタン-->
+                        <ion-item no-lines class="item-button-scan">
+                            <ion-label stacked></ion-label>
+                            <button ion-button icon-only item-content class="button-scan" name="btnInputPassword"
+                                (click)="Scanner_OnScanned($event)">
+                                <ion-icon name="md-qr-scanner"></ion-icon>
+                            </button>
+                        </ion-item>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+        
+        <div class="page-setting-about">
+            <h2 class="center">バージョン情報</h2>
+            <!--システム概要-->
+            <p>
+                ZaiKo STARTER for Cloud - Version X.X.X
+            </p>
+        </div>
+
+    </ion-list>
+</ion-content>

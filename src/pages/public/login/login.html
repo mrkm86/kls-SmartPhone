@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            ログイン
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <h2 class="center">ログイン情報</h2>
+
+        <!--20180912 ANHLD EDIT START-->
+        <!--<ion-item>
+            <ion-input name="txtLoginUser"
+                       type="text"
+                       placeholder="userid"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input name="txtLoginPassword"
+                       type="password"
+                       placeholder="password"></ion-input>
+        </ion-item>-->
+
+        <!--User name-->
+        <ion-grid>
+            <ion-row>
+                <!--テキストボックス-->
+                <ion-item>
+                    <ion-input #txtLoginUser
+                               name="txtLoginUser"
+                               type="text"
+                               placeholder="userid"></ion-input>
+                </ion-item>
+                <!--スキャンボタン-->
+                <ion-item no-lines class="item-button-scan">
+                    <button ion-button icon-only
+                            item-content class="button-scan"
+                            (click)="onScan('txtLoginUser')">
+                        <ion-icon name="md-qr-scanner"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-row>
+        </ion-grid>
+
+        <!--Password-->
+        <ion-grid>
+            <ion-row>
+                <!--テキストボックス-->
+                <ion-item>
+                    <ion-input #txtLoginPassword
+                               name="txtLoginPassword"
+                               type="text"
+                               placeholder="password"></ion-input>
+                </ion-item>
+                <!--スキャンボタン-->
+                <ion-item no-lines class="item-button-scan">
+                    <button ion-button icon-only
+                            item-content class="button-scan"
+                            (click)="onScan('txtLoginPassword')">
+                        <ion-icon name="md-qr-scanner"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-row>
+        </ion-grid>
+
+        <!--確定ボタン-->
+        <ion-item>
+            <button ion-button full large block
+                    class="button-SignIn"
+                    (click)="cmdSignIn_Click()">
+                    サインイン
+            </button>
+        </ion-item>
+        <!--20180912 ANHLD EDIT END-->
+    </ion-list>
+</ion-content>

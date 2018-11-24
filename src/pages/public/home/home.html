@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>ホーム</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!--タイトル（TOP画像でシステム名が表記される場合は不要）-->
+    <!--
+        <h2 class="center">ZaiKo STARTER for Cloud</h2>
+    -->
+    <!--TOP画像-->
+    <img src="assets/image/top.png" />
+
+    <!--メインメニュー-->
+    <ion-card>
+        <!--<ion-card-header>
+            メインメニュー
+        </ion-card-header>-->
+        <ion-grid>
+            <!--MENUITEMの中身を繰り返し表示する-->
+            <ion-row wrap>
+                <ion-col class="menu-item" width-50 *ngFor="let menuitem of MENUINFO">
+                    <ion-item class="item" color={{menuitem.color}} (click)="openPage(menuitem.menu)">
+                        <ion-icon name={{menuitem.icon}}></ion-icon>
+                        {{menuitem.DispTitle}}
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+</ion-content>
