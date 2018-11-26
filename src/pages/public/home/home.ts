@@ -13,6 +13,7 @@ import { IsIniOperation } from '../../../inc/IsIniOperation';
 import { NyukoPage } from '../../private/nyuko/nyuko';
 import { SyukoPage } from '../../private/syuko/syuko';
 import { MessagePage } from '../../private/message/message';
+import { BuggageStatusPage } from '../../private/buggage_status/buggage_status';
 
 @Component({
     selector: 'page-home',
@@ -29,7 +30,7 @@ export class HomePage {
                 icon: "cart"
             },
             {
-                menu: "SEND_BUGGAGE_STATUS",
+                menu: "BUGGAGE_STATUS",
                 DispTitle: "貨物状態",
                 icon: "camera"
             },
@@ -91,6 +92,23 @@ export class HomePage {
                 break;
 
 
+            //貨物状態送信
+            case "BUGGAGE_STATUS":
+                /*
+                this.loginUser = await IsIniOperation.IsIniRead(Global.T_SETINI, 'LOGIN_USER');
+                this.loginPassword = await IsIniOperation.IsIniRead(Global.T_SETINI, 'PASSWORD');
+
+                //ログインをしているかどうか確認する
+                if (this.loginUser == "" || this.loginPassword == "") {
+                    await IsDispOperation.IsMessageBox(this.alertCtrl, "ログインされていません", "エラー", "OK", "");
+                    return;
+                }
+                */
+
+                this.navCtrl.push(BuggageStatusPage, { index: val });
+                break;
+                
+                
             //メッセージ
             case "MESSAGE":
                 /*

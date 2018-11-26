@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>貨物状態送信</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row class="ion-row-search">
+            <ion-col>
+
+                <!--送り状番号-->
+                <ion-item>
+                    <ion-input #inputShipment
+                                name="inputShipment"
+                                type="text"
+                                maxlength="16"
+                                placeholder="送り状番号">
+                    </ion-input>
+                </ion-item>
+
+            </ion-col>
+
+            <ion-col>
+
+                <!--スキャンボタン-->
+                <button ion-button icon-only
+                        item-content
+                        (click)="Scanner_OnScanned($event)">
+                    <ion-icon name="md-qr-scanner"></ion-icon>
+                </button>
+
+                <!--検索ボタン-->
+                <button ion-button icon-only
+                        item-content
+                        class="button-search"
+                        name="btnSearch"
+                        color="light"
+                        (click)="cmdSearch_Click()">
+                    <ion-icon name="md-search"></ion-icon>
+                </button>
+
+            </ion-col>
+        
+        </ion-row>
+    </ion-grid>
+        
+    <ion-item>
+        <ion-label>トレース区分</ion-label>
+        <ion-select [(ngModel)]="toppings" multiple="false">
+            <ion-option>ロケット</ion-option>
+            <ion-option>エアー</ion-option>
+        </ion-select>
+    </ion-item>
+
+        <ion-grid>
+            <ion-label color="primary">画像</ion-label>
+
+            <ion-row>
+                <ion-item>
+                    <button ion-button full large block
+                            class="button-SendMessage"
+                            (click)="cmdSendMessage_Click()">
+                            <ion-icon name="camera"></ion-icon>
+                    </button>
+                </ion-item>
+
+                <ion-item>
+                    <button ion-button full large block
+                            class="button-SendMessage"
+                            (click)="cmdSendMessage_Click()">
+                            <ion-icon name="image"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-row>
+
+            <!--TOP画像-->
+            <img src="assets/image/no_image.png" />
+        </ion-grid>
+
+        <!--貨物状態を入力する-->
+        <ion-item>
+            <ion-label color="primary" floating>メッセージ</ion-label>
+            <ion-textarea #inputDescription
+                        name="inputDescription"
+                        type="text">
+            </ion-textarea>
+        </ion-item>
+        
+        <!--確定ボタン-->
+        <ion-item>
+            <button ion-button full large block
+                    class="button-SendMessage"
+                    (click)="cmdSendMessage_Click()">
+                    送信
+            </button>
+        </ion-item>
+
+</ion-content>

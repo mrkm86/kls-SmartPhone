@@ -3,6 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler, Platform } from 'ionic-angula
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { MyApp } from './app.component';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
 
 //共通
 import { TabsPage } from '../pages/public/tabs/tabs';
@@ -17,6 +19,7 @@ import { SyukoPage } from '../pages/private/syuko/syuko';
 import { SearchPage } from '../pages/private/search/search';
 import { SearchDetailPage } from '../pages/private/search_detail/search_detail'; //20181016 ANHLD ADD
 import { MessagePage } from '../pages/private/message/message';
+import { BuggageStatusPage } from '../pages/private/buggage_status/buggage_status';
 
 @NgModule({
   declarations: [ //ページを追加したら、ここにも追加することを忘れない
@@ -30,7 +33,8 @@ import { MessagePage } from '../pages/private/message/message';
     NyukoPage,
     SyukoPage,
     SearchDetailPage,
-    MessagePage
+    MessagePage,
+    BuggageStatusPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -47,7 +51,8 @@ import { MessagePage } from '../pages/private/message/message';
     NyukoPage,
     SyukoPage,
     SearchDetailPage,
-    MessagePage
+    MessagePage,
+    BuggageStatusPage
   ],
   providers: [
       BarcodeScanner,
