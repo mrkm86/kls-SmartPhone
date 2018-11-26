@@ -90,6 +90,8 @@ export class SettingPage {
                 //BDADDRESS
                 case this.MENU_ID.input_flg_BDADDRESS:
                     this.txtBDADDRESS.value = data.text
+
+                    this.txtBDADDRESS_Scanned();
                     break;
 
                 //Api-url
@@ -103,5 +105,33 @@ export class SettingPage {
         }, (err) => {
             console.log("Scan Unsuccessful: " + err);
         });
+    }
+
+    //*********************************************************
+    //* バーコードスキャン後
+    //*********************************************************
+    txtBDADDRESS_Scanned() {
+        //入力チェック
+        if (this.txtBDADDRESS_InputCheck() == false) {
+            this.txtBDADDRESS.value = "";
+            return;
+        }
+    }
+    //*********************************************************
+    //* 入力チェック
+    //*********************************************************
+    txtBDADDRESS_InputCheck() {
+        var ret = false;
+
+        //桁数チェック
+        if (this.txtBDADDRESS.value.length != 12 ) {
+            //NG
+            alert('入力された桁数が不正です(12桁)');
+            return ret;
+        }
+
+        //OK
+        ret = true;
+        return ret;
     }
 }
