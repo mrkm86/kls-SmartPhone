@@ -21,10 +21,12 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
     "@ionic-native/android-permissions": "^4.12.2",
+    "@ionic-native/background-geolocation": "^4.17.0",
     "@ionic-native/barcode-scanner": "^4.12.2",
     "@ionic-native/camera": "^4.17.0",
     "@ionic-native/core": "^4.12.2",
     "@ionic-native/file": "^4.17.0",
+    "@ionic-native/location-accuracy": "^4.17.0",
     "@ionic-native/sqlite": "^4.13.0",
     "@ionic/storage": "1.1.7",
     "cordova-android": "5.2.2",
@@ -34,6 +36,8 @@
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "4.3.3",
+    "cordova-plugin-mauron85-background-geolocation": "2.3.2",
+    "cordova-plugin-request-location-accuracy": "2.2.3",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-vibration": "^3.1.0",
@@ -87,7 +91,18 @@
       "cordova-sqlite-storage": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-mauron85-background-geolocation": {
+        "GOOGLE_PLAY_SERVICES_VERSION": "11+",
+        "ANDROID_SUPPORT_LIBRARY_VERSION": "23+",
+        "ICON": "@mipmap/icon",
+        "SMALL_ICON": "@mipmap/icon",
+        "ACCOUNT_NAME": "@string/app_name",
+        "ACCOUNT_LABEL": "@string/app_name",
+        "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
+        "CONTENT_AUTHORITY": "$PACKAGE_NAME"
+      },
+      "cordova-plugin-request-location-accuracy": {}
     },
     "platforms": [
       "android"

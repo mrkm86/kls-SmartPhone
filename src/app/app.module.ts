@@ -5,6 +5,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { MyApp } from './app.component';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
+import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 //共通
 import { TabsPage } from '../pages/public/tabs/tabs';
@@ -57,6 +59,8 @@ import { BuggageStatusPage } from '../pages/private/buggage_status/buggage_statu
   providers: [
       BarcodeScanner,
       AndroidPermissions,
+      BackgroundGeolocation,
+      LocationAccuracy,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
