@@ -60,6 +60,7 @@
     <preference name="SplashScreenDelay" value="3000" />
     <plugin name="cordova-plugin-file" spec="4.3.3" />
     <plugin name="cordova-plugin-request-location-accuracy" spec="2.2.3" />
+    <plugin name="cordova-plugin-camera" spec="2.4.1" />
     <plugin name="phonegap-plugin-barcodescanner" spec="8.0.1">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
@@ -73,6 +74,5 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
-    <plugin name="cordova-plugin-camera" spec="2.4.1" />
     <engine name="android" spec="7.1.4" />
 </widget>
