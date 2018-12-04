@@ -21,22 +21,22 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
     "@ionic-native/android-permissions": "^4.12.2",
-    "@ionic-native/background-geolocation": "^4.17.0",
+    "@ionic-native/background-geolocation": "^4.18.0",
     "@ionic-native/barcode-scanner": "^4.12.2",
-    "@ionic-native/camera": "^4.17.0",
+    "@ionic-native/camera": "^4.18.0",
     "@ionic-native/core": "^4.12.2",
     "@ionic-native/file": "^4.17.0",
     "@ionic-native/location-accuracy": "^4.17.0",
     "@ionic-native/sqlite": "^4.13.0",
     "@ionic/storage": "1.1.7",
-    "cordova-android": "5.2.2",
+    "cordova-android": "7.1.4",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "4.3.3",
-    "cordova-plugin-mauron85-background-geolocation": "2.3.2",
+    "cordova-plugin-mauron85-background-geolocation": "2.3.6",
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.2",
@@ -50,7 +50,7 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "node-sass": "^4.9.3",
-    "phonegap-plugin-barcodescanner": "^6.0.8",
+    "phonegap-plugin-barcodescanner": "8.0.1",
     "rxjs": "5.0.0-beta.12",
     "sw-toolbox": "3.4.0",
     "update-notifier": "^2.5.0",
@@ -78,9 +78,6 @@
   },
   "cordova": {
     "plugins": {
-      "phonegap-plugin-barcodescanner": {
-        "CAMERA_USAGE_DESCRIPTION": " "
-      },
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-console": {},
@@ -92,6 +89,10 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {},
+      "cordova-plugin-request-location-accuracy": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-mauron85-background-geolocation": {
         "GOOGLE_PLAY_SERVICES_VERSION": "11+",
         "ANDROID_SUPPORT_LIBRARY_VERSION": "23+",
@@ -101,8 +102,7 @@
         "ACCOUNT_LABEL": "@string/app_name",
         "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
         "CONTENT_AUTHORITY": "$PACKAGE_NAME"
-      },
-      "cordova-plugin-request-location-accuracy": {}
+      }
     },
     "platforms": [
       "android"

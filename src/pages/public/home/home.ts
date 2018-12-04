@@ -1,8 +1,6 @@
 //プラグイン/モジュールなど ---------------------------------------------------------
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 //HEARTIS関数 -----------------------------------------------------------------------
 import { Global } from '../../../inc/Global';
@@ -56,32 +54,42 @@ export class HomePage {
     private loginUser: string = "";
     private loginPassword: string = "";
 
-    /*constructor(
-        public alertCtrl: AlertController,
-        public navCtrl: NavController,
-        private backgroundGeolocation: BackgroundGeolocation,
-        private locationAccuracy: LocationAccuracy) {
+    //20181203 ANHLD DELETE START
+    // /*constructor(
+    //     public alertCtrl: AlertController,
+    //     public navCtrl: NavController,
+    //     private backgroundGeolocation: BackgroundGeolocation,
+    //     private locationAccuracy: LocationAccuracy) {
 
-    }*/
+    // }*/
+    // constructor(
+    //     public alertCtrl: AlertController,
+    //     public navCtrl: NavController,
+    //     private backgroundGeolocation: BackgroundGeolocation,
+    //     private locationAccuracy: LocationAccuracy) { //20181121 ANHLD EDIT (Add bluetoothSerial) //20181126 ANHLD EDIT
+    // }
+
+
+    // ionViewWillEnter() {
+
+    //     this.fnc_CheckLocationState().then(() => {
+    //         //Get location infomation
+    //         this.detectLocationInfo();
+    //     });
+    // }
+
+    // ionViewWillLeave() {
+    //     // start recording location
+    //     this.backgroundGeolocation.stop();
+    // }
+    //20181203 ANHLD DELETE END
+
+    //20181203 ANHLD ADD START
     constructor(
         public alertCtrl: AlertController,
-        public navCtrl: NavController,
-        private backgroundGeolocation: BackgroundGeolocation,
-        private locationAccuracy: LocationAccuracy) { //20181121 ANHLD EDIT (Add bluetoothSerial) //20181126 ANHLD EDIT
+        public navCtrl: NavController) {
     }
-
-    ionViewWillEnter() {
-
-        this.fnc_CheckLocationState().then(() => {
-            //Get location infomation
-            this.detectLocationInfo();
-        });
-    }
-
-    ionViewWillLeave() {
-        // start recording location
-        this.backgroundGeolocation.stop();
-    }
+    //20181203 ANHLD ADD END
 
     //メニューを開く
     async openPage(val: String) {
@@ -130,8 +138,8 @@ export class HomePage {
 
                 this.navCtrl.push(BuggageStatusPage, { index: val });
                 break;
-                
-                
+
+
             //メッセージ
             case "MESSAGE":
                 /*
@@ -147,18 +155,18 @@ export class HomePage {
 
                 this.navCtrl.push(MessagePage, { index: val });
                 break;
-                
+
             //ログオフ
             case "LOGOFF":
                 Global.g_Tanto = "";
 
                 await IsIniOperation.IsIniWrite(Global.T_SETINI, 'LOGIN_USER', '')
-                .then(() => {
-                    IsIniOperation.IsIniWrite(Global.T_SETINI, 'PASSWORD', '');
-                })
-                .then(() => {
-                    IsIniOperation.IsIniWrite(Global.T_SETINI, 'CARNO', '');
-                });
+                    .then(() => {
+                        IsIniOperation.IsIniWrite(Global.T_SETINI, 'PASSWORD', '');
+                    })
+                    .then(() => {
+                        IsIniOperation.IsIniWrite(Global.T_SETINI, 'CARNO', '');
+                    });
 
                 let alert = this.alertCtrl.create({
                     title: 'お疲れ様でした。',
@@ -170,60 +178,62 @@ export class HomePage {
         }
     }
 
-    //Get location infomation
-    detectLocationInfo() {
-        const config: BackgroundGeolocationConfig = {
-            desiredAccuracy: 0,
-            stationaryRadius: 0,
-            distanceFilter: 0,
-            debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-            stopOnTerminate: false, // enable this to clear background location settings when the app terminates
-            interval: 60000 //The minimum time interval between location updates in milliseconds
-        };
+    //20181203 ANHLD DELETE START
+    // //Get location infomation
+    // detectLocationInfo() {
+    //     const config: BackgroundGeolocationConfig = {
+    //         desiredAccuracy: 0,
+    //         stationaryRadius: 0,
+    //         distanceFilter: 0,
+    //         debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+    //         stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+    //         interval: 10000 //ANHLD_TEMP //The minimum time interval between location updates in milliseconds
+    //     };
 
-        this.backgroundGeolocation.configure(config)
-            .subscribe((location: BackgroundGeolocationResponse) => {
+    //     this.backgroundGeolocation.configure(config)
+    //         .subscribe((location: BackgroundGeolocationResponse) => {
 
-                console.log('=>' + new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude);
-                alert(new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude);
+    //             console.log('=>' + new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude);
+    //             //alert(new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude); //20181203 ANHLD DELETE
 
-                // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
-                // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
-                // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-                this.backgroundGeolocation.finish(); // FOR IOS ONLY
-            });
+    //             // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+    //             // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+    //             // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+    //             this.backgroundGeolocation.finish(); // FOR IOS ONLY
+    //         });
 
-        // start recording location
-        this.backgroundGeolocation.start();
-    }
+    //     // start recording location
+    //     this.backgroundGeolocation.start();
+    // }
 
-    //Check Location Turn On/Off
-    fnc_CheckLocationState(): Promise<any> {
-        let promise = new Promise((resolve) => {
-            this.backgroundGeolocation.isLocationEnabled().then(
-                (isEnabled) => {
-                    //Turn Off
-                    if (isEnabled == 0) {
-                        //this.diagnostic.switchToLocationSettings();
-                        this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_BALANCED_POWER_ACCURACY).then(
-                            () => {
-                                console.log('Request successful:');
-                                resolve(true);
-                            },
-                            error => {
-                                console.log('Error requesting location permissions:', error);
-                                resolve(false);
-                            });
-                    }
-                    else {
-                        resolve(true);
-                    }
-                }, (error) => {
-                    console.log('Error isLocationEnabled:', error);
-                    resolve(false);
-                });
-        });
+    // //Check Location Turn On/Off
+    // fnc_CheckLocationState(): Promise<any> {
+    //     let promise = new Promise((resolve) => {
+    //         this.backgroundGeolocation.isLocationEnabled().then(
+    //             (isEnabled) => {
+    //                 //Turn Off
+    //                 if (isEnabled == 0) {
+    //                     //this.diagnostic.switchToLocationSettings();
+    //                     this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_BALANCED_POWER_ACCURACY).then(
+    //                         () => {
+    //                             console.log('Request successful:');
+    //                             resolve(true);
+    //                         },
+    //                         error => {
+    //                             console.log('Error requesting location permissions:', error);
+    //                             resolve(false);
+    //                         });
+    //                 }
+    //                 else {
+    //                     resolve(true);
+    //                 }
+    //             }, (error) => {
+    //                 console.log('Error isLocationEnabled:', error);
+    //                 resolve(false);
+    //             });
+    //     });
 
-        return promise;
-    }
+    //     return promise;
+    // }
+    //20181203 ANHLD DELETE END
 }

@@ -1,17 +1,12 @@
-import { Component, ViewChild } from "@angular/core";
-import { Platform, LoadingController, ToastController, AlertController, TextInput, NavController} from "ionic-angular";
+import { Component } from "@angular/core";
+import { Platform, LoadingController, ToastController, AlertController, NavController } from "ionic-angular";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { Http, RequestOptions, Headers } from "@angular/http";
-import { Keyboard } from 'ionic-native';
-import { IsDispOperation } from "../../../inc/IsDispOperation";
-import { Global, GDATA } from "../../../inc/Global";
-import { IsIniOperation } from "../../../inc/IsIniOperation";
-import { SearchDetailPage } from "../search_detail/search_detail";
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Http } from "@angular/http";
+import { CameraOptions, Camera } from '@ionic-native/camera';
 import { SafeUrl } from '@angular/platform-browser/src/security/dom_sanitization_service';
 
 @Component({
-    selector:'page-buggage_status',
+    selector: 'page-buggage_status',
     templateUrl: 'buggage_status.html'
 })
 
@@ -30,7 +25,10 @@ export class BuggageStatusPage {
         public barcodeScanner: BarcodeScanner,
         public loadingCtrl: LoadingController,
         public http: Http,
-        public navCtrl: NavController) {
+        public navCtrl: NavController,
+        private camera: Camera) { //20181203 ANHLD EDIT add camera
+
+        this.image_uri = "assets/image/no_image.png";
     }
 
     async cmdSendMessage_Click() {
@@ -42,4 +40,52 @@ export class BuggageStatusPage {
         });
         alert.present();
     }
+
+    //20181203 ANHLD ADD START
+    async cmdSelectImage_Click(event: any) {
+        
+        var ctrl = event.currentTarget.getAttribute("name");
+
+        //どのボタンを押されたかによって、処理を分ける
+        switch (ctrl) {
+
+            case "btnCamera":
+                const optionsCamera: CameraOptions = {
+                    quality: 100,
+                    sourceType: this.camera.PictureSourceType.CAMERA,
+                    destinationType: this.camera.DestinationType.DATA_URL,
+                    encodingType: this.camera.EncodingType.JPEG,
+                    mediaType: this.camera.MediaType.PICTURE
+                }
+
+                this.camera.getPicture(optionsCamera).then((imageData) => {
+                    this.image_uri = 'data:image/jpeg;base64,' + imageData;
+
+                }, (err) => {
+                    // Handle error
+                    console.log(err);
+                })
+
+                break;
+
+            case "btnImage":
+                const optionsGallery: CameraOptions = {
+                    quality: 100,
+                    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                    destinationType: this.camera.DestinationType.DATA_URL,
+                    encodingType: this.camera.EncodingType.JPEG,
+                    mediaType: this.camera.MediaType.PICTURE
+                }
+
+                this.camera.getPicture(optionsGallery).then((imageData) => {
+                    this.image_uri = 'data:image/jpeg;base64,' + imageData;
+
+                }, (err) => {
+                    // Handle error
+                    console.log(err);
+                })
+                break;
+        }
+    }
+    //20181203 ANHLD ADD END
 }

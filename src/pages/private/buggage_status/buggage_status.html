@@ -59,23 +59,25 @@
             <ion-row>
                 <ion-item>
                     <button ion-button full large block
+                            name="btnCamera"
                             class="button-SendMessage"
-                            (click)="cmdSendMessage_Click()">
+                            (click)="cmdSelectImage_Click($event)"> <!--20181203 ANHLD EDIT-->
                             <ion-icon name="camera"></ion-icon>
                     </button>
                 </ion-item>
 
                 <ion-item>
                     <button ion-button full large block
+                            name="btnImage"
                             class="button-SendMessage"
-                            (click)="cmdSendMessage_Click()">
+                            (click)="cmdSelectImage_Click($event)"> <!--20181203 ANHLD EDIT-->
                             <ion-icon name="image"></ion-icon>
                     </button>
                 </ion-item>
             </ion-row>
 
             <!--TOP画像-->
-            <img src="assets/image/no_image.png" />
+            <img [src]="image_uri" *ngIf="image_uri" /> <!--20181203 ANHLD EDIT-->
         </ion-grid>
 
         <!--貨物状態を入力する-->

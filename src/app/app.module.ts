@@ -61,6 +61,7 @@ import { BuggageStatusPage } from '../pages/private/buggage_status/buggage_statu
       AndroidPermissions,
       BackgroundGeolocation,
       LocationAccuracy,
+      Camera, //20181203 ANHLD EDIT
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
