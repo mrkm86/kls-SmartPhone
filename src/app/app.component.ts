@@ -70,7 +70,7 @@ export class MyApp {
             desiredAccuracy: 0,
             stationaryRadius: 0,
             distanceFilter: 0,
-            debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+            debug: false, //  enable this hear sounds for background-geolocation life-cycle.
             stopOnTerminate: false, // enable this to clear background location settings when the app terminates
             interval: 60000 //The minimum time interval between location updates in milliseconds
         };
