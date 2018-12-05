@@ -22,7 +22,7 @@ export class MyApp {
     pages: Array<{ title: string, component: any, id: any }>;
 
     constructor(
-        platform: Platform,
+        public platform: Platform,
         androidPermissions: AndroidPermissions,
         private backgroundGeolocation: BackgroundGeolocation,
         private locationAccuracy: LocationAccuracy) {
@@ -84,7 +84,10 @@ export class MyApp {
                 // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
                 // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
                 // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-                this.backgroundGeolocation.finish(); // FOR IOS ONLY
+                if (this.platform.is('ios')) 
+                {
+                    this.backgroundGeolocation.finish(); // FOR IOS ONLY //20181205 ANHLD EDIT
+                }
             });
 
         // start recording location
