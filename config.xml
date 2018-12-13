@@ -74,5 +74,6 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
+    <plugin name="cordova-plugin-bluetooth-serial" spec="0.4.7" />
     <engine name="android" spec="7.1.4" />
 </widget>

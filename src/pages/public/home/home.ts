@@ -1,6 +1,7 @@
 //プラグイン/モジュールなど ---------------------------------------------------------
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 
 //HEARTIS関数 -----------------------------------------------------------------------
 import { Global } from '../../../inc/Global';
@@ -14,6 +15,7 @@ import { NyukoPage } from '../../private/nyuko/nyuko';
 import { SyukoPage } from '../../private/syuko/syuko';
 import { MessagePage } from '../../private/message/message';
 import { BuggageStatusPage } from '../../private/buggage_status/buggage_status';
+import { C_Fujitsu } from '../../../inc/C_Fujitsu';
 
 @Component({
     selector: 'page-home',
@@ -48,7 +50,14 @@ export class HomePage {
                 menu: "LOGOFF",
                 DispTitle: "ログオフ",
                 icon: "power"
+            },
+            //20181210 ANHLD ADD START
+            {
+                menu: "PRINT",
+                DispTitle: "プリンタテスト",
+                icon: "print"
             }
+            //20181210 ANHLD ADD END
         ]
 
     private loginUser: string = "";
@@ -87,7 +96,8 @@ export class HomePage {
     //20181203 ANHLD ADD START
     constructor(
         public alertCtrl: AlertController,
-        public navCtrl: NavController) {
+        public navCtrl: NavController,
+        private bluetoothSerial: BluetoothSerial) {
     }
     //20181203 ANHLD ADD END
 
@@ -175,6 +185,58 @@ export class HomePage {
                 });
                 alert.present();
                 break;
+
+            //20181210 ANHLD ADD START
+            case "PRINT":
+
+                var strBdAddress = "";
+                var strBDAddressTemp = "";
+
+                strBDAddressTemp = await IsIniOperation.IsIniRead(Global.T_SETINI, 'BDADDRESS');
+
+                //Check BDAddress
+                if (strBDAddressTemp == "" || strBDAddressTemp.length != 12) return;
+
+                //Generate Bluetooth mac address
+                strBdAddress += strBDAddressTemp.substr(0, 2) + ":";
+                strBdAddress += strBDAddressTemp.substr(2, 2) + ":";
+                strBdAddress += strBDAddressTemp.substr(4, 2) + ":";
+                strBdAddress += strBDAddressTemp.substr(6, 2) + ":";
+                strBdAddress += strBDAddressTemp.substr(8, 2) + ":";
+                strBdAddress += strBDAddressTemp.substr(10, 2);
+
+                //Connect to device
+                this.bluetoothSerial.connect(strBdAddress).subscribe(
+                    () => {
+                        //Create file------------------------------------↓
+                        C_Fujitsu.MakeCommandFile("A334_TEST.TXT").then(
+                            () => {
+                                //Send data------------------------------------↓
+                                C_Fujitsu.prnSendDataSPP("A334_TEST.TXT").then(
+                                    () => {
+        
+                                        //Successs
+                                        IsDispOperation.IsMessageBox(this.alertCtrl, "Send Complete", "", "OK", "");
+                                    },
+                                    (error) => {
+                                        console.log("prnSendDataSPP ERROR:" + error);
+                                    }
+                                );
+                                //Send data------------------------------------↑
+                            },
+                            (error) => {
+                                console.log("MakeCommandFile ERROR:" + error);
+                            }
+                        );
+                        //Create file------------------------------------↑
+                    },
+                    error => {
+                        console.log(JSON.stringify(error)); //Unabled to connect to device
+                    }
+                );
+
+                break;
+            //20181210 ANHLD ADD END
         }
     }
 

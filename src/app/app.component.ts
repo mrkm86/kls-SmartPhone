@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ViewController } from 'ionic-angular';
+import { Nav, Platform} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/public/tabs/tabs';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -8,6 +8,7 @@ import { IsIniOperation } from '../inc/IsIniOperation';    //20180918 ANHLD ADD
 import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 //20181203 ANHLD ADD END
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial'; //20181210 ANHLD ADD
 
 import { HomePage } from '../pages/public/home/home';
 import { SettingPage } from '../pages/public/setting/setting';
@@ -25,7 +26,8 @@ export class MyApp {
         public platform: Platform,
         androidPermissions: AndroidPermissions,
         private backgroundGeolocation: BackgroundGeolocation,
-        private locationAccuracy: LocationAccuracy) {
+        private locationAccuracy: LocationAccuracy,
+        private bluetoothSerial: BluetoothSerial) {
         platform.ready().then(() => {
 
             // Okay, so the platform is ready and our plugins are available.
@@ -44,6 +46,11 @@ export class MyApp {
                 this.detectLocationInfo();
             });
             //20181203 ANHLD ADD END
+
+            //20181210 ANHLD ADD START
+            //Enable Bluetooth
+            this.bluetoothSerial.enable();
+            //20181210 ANHLD ADD END
 
             // used for an example of ngFor and navigation
             this.pages = [
@@ -77,15 +84,14 @@ export class MyApp {
 
         this.backgroundGeolocation.configure(config)
             .subscribe((location: BackgroundGeolocationResponse) => {
-                
+
                 console.log('=>' + new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude);
                 //alert(new Date().toTimeString() + ":" + location.latitude + ',' + location.longitude); //20181203 ANHLD DELETE
 
                 // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
                 // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
                 // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-                if (this.platform.is('ios')) 
-                {
+                if (this.platform.is('ios')) {
                     this.backgroundGeolocation.finish(); // FOR IOS ONLY //20181205 ANHLD EDIT
                 }
             });
